@@ -13,6 +13,8 @@
 #include <AP_Vehicle/AP_MultiCopter.h>
 
 #define AC_ATTITUDE_CONTROL_ANGLE_P                     4.5f             // default angle P gain for roll, pitch and yaw
+#define AC_ATTITUDE_CONTROL_ANGLE_D                     0.01f             // default angle P gain for roll, pitch and yaw
+
 
 #define AC_ATTITUDE_ACCEL_RP_CONTROLLER_MIN_RADSS       radians(40.0f)   // minimum body-frame acceleration limit for the stability controller (for roll and pitch axis)
 #define AC_ATTITUDE_ACCEL_RP_CONTROLLER_MAX_RADSS       radians(720.0f)  // maximum body-frame acceleration limit for the stability controller (for roll and pitch axis)
@@ -49,9 +51,9 @@ public:
     AC_AttitudeControl( AP_AHRS_View &ahrs,
                         const AP_MultiCopter &aparm,
                         AP_Motors& motors) :
-        _p_angle_roll(AC_ATTITUDE_CONTROL_ANGLE_P),
-        _p_angle_pitch(AC_ATTITUDE_CONTROL_ANGLE_P),
-        _p_angle_yaw(AC_ATTITUDE_CONTROL_ANGLE_P),
+        _p_angle_roll(AC_ATTITUDE_CONTROL_ANGLE_P, AC_ATTITUDE_CONTROL_ANGLE_D),
+        _p_angle_pitch(AC_ATTITUDE_CONTROL_ANGLE_P, AC_ATTITUDE_CONTROL_ANGLE_D),
+        _p_angle_yaw(AC_ATTITUDE_CONTROL_ANGLE_P, AC_ATTITUDE_CONTROL_ANGLE_D),
         _angle_boost(0),
         _use_sqrt_controller(true),
         _throttle_rpy_mix_desired(AC_ATTITUDE_CONTROL_THR_MIX_DEFAULT),
