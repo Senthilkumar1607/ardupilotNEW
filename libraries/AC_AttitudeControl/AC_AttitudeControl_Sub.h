@@ -87,6 +87,27 @@ protected:
     AC_PID                _pid_rate_roll;
     AC_PID                _pid_rate_pitch;
     AC_PID                _pid_rate_yaw;
+     //AP_MotorsMulticopter& _motors_multi;
+    AC_PNew                _p_angle_roll {
+        AC_PNew::Defaults{
+            .p         = AC_ATC_SUB_ANGLE_P,
+            .d         = AC_ATC_SUB_ANGLE_D
+        }
+    };
+    AC_PNew               _p_angle_pitch{
+        AC_PNew::Defaults{
+            .p         = AC_ATC_SUB_ANGLE_P,
+            .d         = AC_ATC_SUB_ANGLE_D
+        }
+    };
+
+    AC_PNew                _p_angle_yaw{
+        AC_PNew::Defaults{
+            .p         = AC_ATC_SUB_ANGLE_P,
+            .d         = AC_ATC_SUB_ANGLE_D
+        }
+    };
+
 
     AP_Float              _thr_mix_man;     // throttle vs attitude control prioritisation used when using manual throttle (higher values mean we prioritise attitude control over throttle)
     AP_Float              _thr_mix_min;     // throttle vs attitude control prioritisation used when landing (higher values mean we prioritise attitude control over throttle)
