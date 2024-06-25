@@ -85,7 +85,7 @@ const AP_Param::GroupInfo AC_AttitudeControl::var_info[] = {
     // @Range: 3.000 12.000
     // @Range{Sub}: 0.0 12.000
     // @User: Standard
-    AP_SUBGROUPINFO(_p_angle_roll, "ANG_RLL_", 13, AC_AttitudeControl, AC_P),
+    AP_SUBGROUPINFO(_p_angle_roll, "ANG_RLL_", 13, AC_AttitudeControl, AC_PNew),
 
     // @Param: ANG_PIT_P
     // @DisplayName: Pitch axis angle controller P gain
@@ -93,7 +93,7 @@ const AP_Param::GroupInfo AC_AttitudeControl::var_info[] = {
     // @Range: 3.000 12.000
     // @Range{Sub}: 0.0 12.000
     // @User: Standard
-    AP_SUBGROUPINFO(_p_angle_pitch, "ANG_PIT_", 14, AC_AttitudeControl, AC_P),
+    AP_SUBGROUPINFO(_p_angle_pitch, "ANG_PIT_", 14, AC_AttitudeControl, AC_PNew),
 
     // @Param: ANG_YAW_P
     // @DisplayName: Yaw axis angle controller P gain
@@ -101,7 +101,7 @@ const AP_Param::GroupInfo AC_AttitudeControl::var_info[] = {
     // @Range: 3.000 12.000
     // @Range{Sub}: 0.0 6.000
     // @User: Standard
-    AP_SUBGROUPINFO(_p_angle_yaw, "ANG_YAW_", 15, AC_AttitudeControl, AC_P),
+    AP_SUBGROUPINFO(_p_angle_yaw, "ANG_YAW_", 15, AC_AttitudeControl, AC_PNew),
 
     // @Param: ANG_LIM_TC
     // @DisplayName: Angle Limit (to maintain altitude) Time Constant
@@ -1128,10 +1128,10 @@ bool AC_AttitudeControl::pre_arm_checks(const char *param_prefix,
                                         char *failure_msg,
                                         const uint8_t failure_msg_len)
 {
-    // validate AC_P members:
+    // validate AC_PNew members:
     const struct {
         const char *pid_name;
-        AC_P &p;
+        AC_PNew &p;
     } ps[] = {
         { "ANG_PIT", get_angle_pitch_p() },
         { "ANG_RLL", get_angle_roll_p() },
