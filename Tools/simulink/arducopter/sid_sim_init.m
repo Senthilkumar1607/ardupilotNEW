@@ -243,16 +243,19 @@ simIn.param.ATC.ANGLE_LIMIT_THROTTLE_MAX = single(0.8); % Max throttle used to l
 simIn.param.ATC.ANG_LIM_TC = getParamVal(sid, 'ATC_ANG_LIM_TC'); % Angle Limit (to maintain altitude) Time Constant
 % Roll Angle Controller
 simIn.param.ATC.ANG_RLL_P = getParamVal(sid, 'ATC_ANG_RLL_P');
+simIn.param.ATC.ANG_RLL_D = getParamVal(sid, 'ATC_ANG_RLL_D');
 simIn.param.ATC.ACCEL_R_MAX = getParamVal(sid, 'ATC_ACCEL_R_MAX');
 simIn.param.ATC.RATE_R_MAX = getParamVal(sid, 'ATC_RATE_R_MAX');
 simIn.param.ATC.ACCEL_RP_CONTROLLER_MIN_RADSS = 40*pi/180; % Maximum body-frame acceleration limit for the stability controller, defined in AC_AttitudeControl.h
 simIn.param.ATC.ACCEL_RP_CONTROLLER_MAX_RADSS = 720*pi/180;
 % Pitch Angle Controller
 simIn.param.ATC.ANG_PIT_P = getParamVal(sid, 'ATC_ANG_PIT_P');
+simIn.param.ATC.ANG_PIT_D = getParamVal(sid, 'ATC_ANG_PIT_D');
 simIn.param.ATC.ACCEL_P_MAX = getParamVal(sid, 'ATC_ACCEL_P_MAX');
 simIn.param.ATC.RATE_P_MAX = getParamVal(sid, 'ATC_RATE_P_MAX');
 % Yaw Angle Controller
 simIn.param.ATC.ANG_YAW_P = getParamVal(sid, 'ATC_ANG_YAW_P');
+simIn.param.ATC.ANG_YAW_D = getParamVal(sid, 'ATC_ANG_YAW_D');
 simIn.param.ATC.ACCEL_Y_MAX = getParamVal(sid, 'ATC_ACCEL_Y_MAX');
 simIn.param.ATC.RATE_Y_MAX = getParamVal(sid, 'ATC_RATE_Y_MAX');
 simIn.param.ATC.ACCEL_Y_CONTROLLER_MAX_RADSS = single(120*pi/180); % Maximum body-frame acceleration limit for the stability controller, defined in AC_AttitudeControl.h
