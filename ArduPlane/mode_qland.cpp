@@ -14,7 +14,7 @@ bool ModeQLand::_enter()
     quadplane.landing_detect.lower_limit_start_ms = 0;
     quadplane.landing_detect.land_start_ms = 0;
 #if AP_LANDINGGEAR_ENABLED
-    plane.g2.landing_gear.deploy_for_landing();
+    plane.g2.landing_gear.retract_after_takeoff();
 #endif
 #if AP_FENCE_ENABLED
     plane.fence.auto_disable_fence_for_landing();
