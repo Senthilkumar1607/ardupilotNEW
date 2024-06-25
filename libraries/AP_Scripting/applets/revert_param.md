@@ -44,9 +44,9 @@ The script covers the following parameters on quadplanes:
  - Q_A_RAT_RLL_*
  - Q_A_RAT_PIT_*
  - Q_A_RAT_YAW_*
- - Q_A_ANG_RLL_P
- - Q_A_ANG_PIT_P
- - Q_A_ANG_YAW_P
+ - Q_A_ANG_RLL_*
+ - Q_A_ANG_PIT_*
+ - Q_A_ANG_YAW_*
  - Q_A_RATE_*_MAX
  - Q_P_ACCZ_*
  - Q_P_VELZ_*
@@ -59,9 +59,9 @@ The script covers the following parameters on copters:
  - ATC_RAT_RLL_*
  - ATC_RAT_PIT_*
  - ATC_RAT_YAW_*
- - ATC_ANG_RLL_P
- - ATC_ANG_PIT_P
- - ATC_ANG_YAW_P
+ - ATC_ANG_RLL_*
+ - ATC_ANG_PIT_*
+ - ATC_ANG_YAW_*
  - ATC_RATE_*_MAX
  - PSC_ACCZ_*
  - PSC_VELZ_*

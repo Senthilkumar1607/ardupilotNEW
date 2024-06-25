@@ -55,6 +55,8 @@ Q_A_ACCEL_Y_MAX  20000
 # VTOL rate tuning
 Q_A_ANG_PIT_P    4
 Q_A_ANG_RLL_P    4
+Q_A_ANG_PIT_D    0.01
+Q_A_ANG_RLL_D    0.01
 Q_A_RAT_PIT_D    0.008
 Q_A_RAT_PIT_I    0.1
 Q_A_RAT_PIT_P    0.1
