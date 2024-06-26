@@ -339,14 +339,17 @@ AC_AttitudeControl_Sub::AC_AttitudeControl_Sub(AP_AHRS_View &ahrs, const AP_Mult
     _motors_multi(motors),
     _pid_rate_roll(AC_ATC_SUB_RATE_RP_P, AC_ATC_SUB_RATE_RP_I, AC_ATC_SUB_RATE_RP_D, 0.0f, AC_ATC_SUB_RATE_RP_IMAX, AC_ATC_SUB_RATE_RP_FILT_HZ, 0.0f, AC_ATC_SUB_RATE_RP_FILT_HZ),
     _pid_rate_pitch(AC_ATC_SUB_RATE_RP_P, AC_ATC_SUB_RATE_RP_I, AC_ATC_SUB_RATE_RP_D, 0.0f, AC_ATC_SUB_RATE_RP_IMAX, AC_ATC_SUB_RATE_RP_FILT_HZ, 0.0f, AC_ATC_SUB_RATE_RP_FILT_HZ),
-	_pid_rate_yaw(AC_ATC_SUB_RATE_YAW_P, AC_ATC_SUB_RATE_YAW_I, AC_ATC_SUB_RATE_YAW_D, 0.0f, AC_ATC_SUB_RATE_YAW_IMAX, AC_ATC_SUB_RATE_YAW_FILT_HZ, 0.0f, AC_ATC_SUB_RATE_YAW_FILT_HZ)
+	_pid_rate_yaw(AC_ATC_SUB_RATE_YAW_P, AC_ATC_SUB_RATE_YAW_I, AC_ATC_SUB_RATE_YAW_D, 0.0f, AC_ATC_SUB_RATE_YAW_IMAX, AC_ATC_SUB_RATE_YAW_FILT_HZ, 0.0f, AC_ATC_SUB_RATE_YAW_FILT_HZ),
+    _p_angle_roll(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D),
+    _p_angle_pitch(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D),
+    _p_angle_yaw(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D)
 {
     AP_Param::setup_object_defaults(this, var_info);
 
-    // Sub-specific defaults for parent class
+    /* Sub-specific defaults for parent class
     _p_angle_roll(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D);
     _p_angle_pitch(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D);
-    _p_angle_yaw(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D);
+    _p_angle_yaw(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D);*/
 
     _accel_yaw_max.set_default(AC_ATC_SUB_ACCEL_Y_MAX);
 }

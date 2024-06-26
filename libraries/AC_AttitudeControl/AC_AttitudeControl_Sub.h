@@ -87,7 +87,7 @@ protected:
     AC_PID                _pid_rate_roll;
     AC_PID                _pid_rate_pitch;
     AC_PID                _pid_rate_yaw;
-     //AP_MotorsMulticopter& _motors_multi;
+
     AC_PNew                _p_angle_roll {
         AC_PNew::Defaults{
             .p         = AC_ATC_SUB_ANGLE_P,
