@@ -12,19 +12,23 @@ jobs:
     container: ardupilot/ardupilot-dev-base:v0.1.3
     strategy:
       fail-fast: false  # don't cancel if a job from the matrix fails
-      matrix:
+    matrix:
         config: [
             check_autotest_options,
             param_parse,
             python-cleanliness,
             astyle-cleanliness,
             validate_board_list,
-       ]
+            ]
     steps:
       # git checkout the PR
       - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
+          
+      - name: Configure Git safe directory
+        run: git config --global --add safe.directory /__w/ardupilotNEW/ardupilotNEW
+
       - name: test ${{matrix.config}}
         env:
           CI_BUILD_TARGET: ${{matrix.config}}
