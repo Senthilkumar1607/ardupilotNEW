@@ -148,6 +148,23 @@ jobs:
         with:
           submodules: 'recursive'
           
+      - name: Configure Git safe directory
+        run: git config --global --add safe.directory /__w/ardupilotNEW/ardupilotNEW
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Set up virtual environment
+        run: python -m venv venv
+
+      - name: Activate virtual environment and install dependencies
+        run: |
+          venv\Scripts\activate
+          pip install --upgrade pip
+          pip install pymavlink
+
       - name: Prepare ccache timestamp
         id: ccache_cache_timestamp
         shell: bash
@@ -162,7 +179,7 @@ jobs:
         with:
           packages: cygwin64 gcc-g++=10.2.0-1 ccache python37 python37-future python37-lxml python37-pip python37-setuptools python37-wheel git procps gettext
           add-to-path: false
-      # Put ccache into github cache for faster build
+
       - name: setup ccache
         env:
           PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
@@ -178,12 +195,14 @@ jobs:
           echo "export CCACHE_MAXSIZE=400M" >> ~/ccache.conf &&
           source ~/ccache.conf &&
           ccache -s
+
       - name: ccache cache files
         uses: actions/cache@v3
         with:
           path: D:/a/ardupilot/ardupilot/ccache
           key: ${{ steps.ccache_cache_timestamp.outputs.cache-key }}-ccache-${{steps.ccache_cache_timestamp.outputs.timestamp}}
           restore-keys: ${{ steps.ccache_cache_timestamp.outputs.cache-key }}-ccache-  # restore ccache from either previous build on this branch or on base branch
+
       - name: Prepare Python environment
         env:
           PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
@@ -205,15 +224,22 @@ jobs:
         run: >-
           export PATH=/usr/local/bin:/usr/bin:$(cygpath ${SYSTEMROOT})/system32 &&
           source ~/ccache.conf &&
-          Tools/scripts/cygwin_build.sh &&
+          python ./waf configure --board=sitl &&
+          python ./waf plane -j8 &&
           ccache -s
+
+      - name: List build directory contents
+        run: ls -R build/sitl
 
       - name: Check build files
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: "artifacts/*"
+          files: "build/sitl/bin/arduplane"
           fail: true
+
+      - name: Copy build artifact
+        run: cp -v build/sitl/bin/arduplane artifacts/ArduPlane.elf.exe
 
       - name: Archive build
         uses: actions/upload-artifact@v3
