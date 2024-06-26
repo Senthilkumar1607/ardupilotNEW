@@ -160,9 +160,10 @@ jobs:
 
       - name: Activate virtual environment and install dependencies
         run: |
-          source venv/Scripts/activate
+          venv\Scripts\activate
           pip install --upgrade pip
           pip install pymavlink
+          
       - name: Prepare ccache timestamp
         id: ccache_cache_timestamp
         shell: bash
