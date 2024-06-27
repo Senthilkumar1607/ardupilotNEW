@@ -306,7 +306,7 @@ const AP_Param::GroupInfo AC_AttitudeControl_Sub::var_info[] = {
     // @Range: 0.5 0.9
     // @User: Advanced
     AP_GROUPINFO("THR_MIX_MAN", 6, AC_AttitudeControl_Sub, _thr_mix_man, AC_ATTITUDE_CONTROL_MAN_DEFAULT),
-
+/*
     // @Param: ANG_RLL_P
     // @DisplayName: Roll axis angle controller P gain
     // @Description: Roll axis angle controller P gain.  Converts the error between the desired roll angle and actual angle to a desired roll rate
@@ -351,7 +351,7 @@ const AP_Param::GroupInfo AC_AttitudeControl_Sub::var_info[] = {
     // @Range: 0.01 5.000
     // @Increment: 0.01
     // @User: Standard
-    AP_SUBGROUPINFO(_p_angle_yaw, "ANG_YAW_", 9, AC_AttitudeControl_Sub, AC_PNew),
+    AP_SUBGROUPINFO(_p_angle_yaw, "ANG_YAW_", 9, AC_AttitudeControl_Sub, AC_PNew),      */
 
     // @Param: RAT_RLL_FILT
     // @DisplayName: Roll axis rate controller input frequency in Hz
@@ -386,17 +386,24 @@ AC_AttitudeControl_Sub::AC_AttitudeControl_Sub(AP_AHRS_View &ahrs, const AP_Mult
     _motors_multi(motors),
     _pid_rate_roll(AC_ATC_SUB_RATE_RP_P, AC_ATC_SUB_RATE_RP_I, AC_ATC_SUB_RATE_RP_D, 0.0f, AC_ATC_SUB_RATE_RP_IMAX, AC_ATC_SUB_RATE_RP_FILT_HZ, 0.0f, AC_ATC_SUB_RATE_RP_FILT_HZ),
     _pid_rate_pitch(AC_ATC_SUB_RATE_RP_P, AC_ATC_SUB_RATE_RP_I, AC_ATC_SUB_RATE_RP_D, 0.0f, AC_ATC_SUB_RATE_RP_IMAX, AC_ATC_SUB_RATE_RP_FILT_HZ, 0.0f, AC_ATC_SUB_RATE_RP_FILT_HZ),
-	_pid_rate_yaw(AC_ATC_SUB_RATE_YAW_P, AC_ATC_SUB_RATE_YAW_I, AC_ATC_SUB_RATE_YAW_D, 0.0f, AC_ATC_SUB_RATE_YAW_IMAX, AC_ATC_SUB_RATE_YAW_FILT_HZ, 0.0f, AC_ATC_SUB_RATE_YAW_FILT_HZ),
-    _p_angle_roll(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D),
+	_pid_rate_yaw(AC_ATC_SUB_RATE_YAW_P, AC_ATC_SUB_RATE_YAW_I, AC_ATC_SUB_RATE_YAW_D, 0.0f, AC_ATC_SUB_RATE_YAW_IMAX, AC_ATC_SUB_RATE_YAW_FILT_HZ, 0.0f, AC_ATC_SUB_RATE_YAW_FILT_HZ)
+    /*_p_angle_roll(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D),
     _p_angle_pitch(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D),
-    _p_angle_yaw(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D)
+    _p_angle_yaw(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D)*/
 {
     AP_Param::setup_object_defaults(this, var_info);
 
     // Sub-specific defaults for parent class
-    _p_angle_roll(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D);
+    /*_p_angle_roll(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D);
     _p_angle_pitch(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D);
-    _p_angle_yaw(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D);
+    _p_angle_yaw(AC_ATC_SUB_ANGLE_P, AC_ATC_SUB_ANGLE_D);*/
+
+    _p_angle_roll.kP().set_default(AC_ATC_SUB_ANGLE_P);
+    _p_angle_pitch.kP().set_default(AC_ATC_SUB_ANGLE_P);
+    _p_angle_yaw.kP().set_default(AC_ATC_SUB_ANGLE_P);
+    _p_angle_roll.kD().set_default(AC_ATC_SUB_ANGLE_D);
+    _p_angle_pitch.kD().set_default(AC_ATC_SUB_ANGLE_D);
+    _p_angle_yaw.kD().set_default(AC_ATC_SUB_ANGLE_D);
 
     _accel_yaw_max.set_default(AC_ATC_SUB_ACCEL_Y_MAX);
 }
