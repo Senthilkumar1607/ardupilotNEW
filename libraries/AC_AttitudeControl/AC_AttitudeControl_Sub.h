@@ -5,6 +5,7 @@
 
 #include "AC_AttitudeControl.h"
 #include <AP_Motors/AP_MotorsMulticopter.h>
+#include <AC_PID/AC_PNew.h>
 
 // default angle controller PID gains
 // (Sub-specific defaults for parent class)
@@ -40,6 +41,13 @@ public:
     const AC_PID& get_rate_roll_pid() const override { return _pid_rate_roll; }
     const AC_PID& get_rate_pitch_pid() const override { return _pid_rate_pitch; }
     const AC_PID& get_rate_yaw_pid() const override { return _pid_rate_yaw; }
+
+    AC_PNew& get_angle_roll_p() { return _p_angle_roll; }
+    AC_PNew& get_angle_pitch_p() { return _p_angle_pitch; }
+    AC_PNew& get_angle_yaw_p() { return _p_angle_yaw; }
+    const AC_PNew& get_angle_roll_p() const { return _p_angle_roll; }
+    const AC_PNew& get_angle_pitch_p() const { return _p_angle_pitch; }
+    const AC_PNew& get_angle_yaw_p() const { return _p_angle_yaw; }
 
     // Update Alt_Hold angle maximum
     void update_althold_lean_angle_max(float throttle_in) override;
