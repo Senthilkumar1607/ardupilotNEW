@@ -42,12 +42,12 @@ public:
     const AC_PID& get_rate_pitch_pid() const override { return _pid_rate_pitch; }
     const AC_PID& get_rate_yaw_pid() const override { return _pid_rate_yaw; }
 
-    AC_PNew& get_angle_roll_p() { return _p_angle_roll; }
+    /*AC_PNew& get_angle_roll_p() { return _p_angle_roll; }
     AC_PNew& get_angle_pitch_p() { return _p_angle_pitch; }
     AC_PNew& get_angle_yaw_p() { return _p_angle_yaw; }
     const AC_PNew& get_angle_roll_p() const { return _p_angle_roll; }
     const AC_PNew& get_angle_pitch_p() const { return _p_angle_pitch; }
-    const AC_PNew& get_angle_yaw_p() const { return _p_angle_yaw; }
+    const AC_PNew& get_angle_yaw_p() const { return _p_angle_yaw; }*/
 
     // Update Alt_Hold angle maximum
     void update_althold_lean_angle_max(float throttle_in) override;
@@ -96,7 +96,7 @@ protected:
     AC_PID                _pid_rate_pitch;
     AC_PID                _pid_rate_yaw;
 
-    AC_PNew                _p_angle_roll {
+    /*AC_PNew                _p_angle_roll {
         AC_PNew::Defaults{
             .p         = AC_ATC_SUB_ANGLE_P,
             .d         = AC_ATC_SUB_ANGLE_D
@@ -114,7 +114,7 @@ protected:
             .p         = AC_ATC_SUB_ANGLE_P,
             .d         = AC_ATC_SUB_ANGLE_D
         }
-    };
+    };*/
 
 
     AP_Float              _thr_mix_man;     // throttle vs attitude control prioritisation used when using manual throttle (higher values mean we prioritise attitude control over throttle)
