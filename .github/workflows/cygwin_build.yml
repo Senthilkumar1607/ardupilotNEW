@@ -81,6 +81,12 @@ jobs:
         shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
         run: ls -la .git
 
+      - name: Configure Git safe directory
+        env:
+          PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
+        shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
+        run: git config --global --add safe.directory /cygdrive/d/a/ardupilotNEW/ardupilotNEW
+
       - name: Update submodules
         env:
           PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
