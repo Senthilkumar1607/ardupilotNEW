@@ -85,6 +85,14 @@ Q_A_ANG_PIT_D    0.01
 Q_A_ANG_RLL_D    0.01
 Q_A_ANG_YAW_D    0.01
 
+Q_A_ANG_PIT_I    0.1
+Q_A_ANG_RLL_I    0.1
+Q_A_ANG_YAW_I    0.1
+
+Q_A_ANG_PIT_IMAX    1.0
+Q_A_ANG_RLL_IMAX    1.0
+Q_A_ANG_YAW_IMAX    1.0
+
 Q_A_RATE_FF_ENAB 0
 
 # pitch PID gains

@@ -7,6 +7,12 @@ ATC_ANG_YAW_P    0.50
 ATC_ANG_PIT_D    0.01
 ATC_ANG_RLL_D    0.01
 ATC_ANG_YAW_D    0.01
+ATC_ANG_PIT_I           0.1
+ATC_ANG_RLL_I           0.1
+ATC_ANG_YAW_I           0.1
+ATC_ANG_PIT_IMAX        1.0
+ATC_ANG_RLL_IMAX        1.0
+ATC_ANG_YAW_IMAX        1.0
 ATC_RAT_PIT_P    3.6
 ATC_RAT_RLL_P    3.6
 ATC_RAT_YAW_P    1.9
