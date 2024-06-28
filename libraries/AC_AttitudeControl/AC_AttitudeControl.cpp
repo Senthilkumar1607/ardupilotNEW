@@ -103,7 +103,7 @@ const AP_Param::GroupInfo AC_AttitudeControl::var_info[] = {
     // @Param: ANG_RLL_IMAX
     // @DisplayName: Roll axis angle controller IMAX gain
     // @Description: Roll axis angle controller IMAX gain.  Converts the error between the desired roll angle and actual angle to a desired roll rate
-    // @Range: 1 .0 5.000
+    // @Range: 1.0 5.000
     // @Range{Sub}: 0.0 5.000
     // @User: Standard
 
