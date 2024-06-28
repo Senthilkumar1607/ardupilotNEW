@@ -38,7 +38,7 @@ jobs:
           packages: cygwin64 gcc-g++=10.2.0-1 ccache python37 python37-future python37-lxml python37-pip python37-setuptools python37-wheel git procps gettext
           add-to-path: false
 
-      - name: setup ccache
+      - name: Setup ccache
         env:
           PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
         shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
@@ -54,7 +54,7 @@ jobs:
           source ~/ccache.conf &&
           ccache -s
 
-      - name: ccache cache files
+      - name: Ccache cache files
         uses: actions/cache@v3
         with:
           path: D:/a/ardupilot/ardupilot/ccache
@@ -75,15 +75,21 @@ jobs:
           ln -s ccache /usr/local/bin/x86_64-pc-cygwin-gcc &&
           ln -s ccache /usr/local/bin/x86_64-pc-cygwin-g++
 
-      - name: Configure Git safe directory and update submodules
+      - name: Configure Git and update submodules
         env:
           PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
         shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
         run: |
-          git config --global --add safe.directory /cygdrive/d/a/ardupilotNEW/ardupilotNEW
+          git config --global --add safe.directory /cygdrive/d/a/ardupilotNEW/ardupilotNEW &&
           git submodule update --init --recursive
-          git status
-          git rev-parse --is-inside-work-tree
+
+      - name: Debug information
+        env:
+          PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
+        shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
+        run: |
+          git status &&
+          git rev-parse --is-inside-work-tree &&
           git submodule status
 
       - name: Build SITL
