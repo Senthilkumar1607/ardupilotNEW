@@ -23,21 +23,6 @@ jobs:
           submodules: 'recursive'
           fetch-depth: 0
 
-      - name: List .git directory
-        run: ls -la .git
-
-      - name: Set .git permissions
-        run: chmod -R 755 .git
-
-      - name: Update submodules
-        run: git submodule update --init --recursive
-
-      - name: Debug information
-        run: |
-          git status
-          git rev-parse --is-inside-work-tree
-          git submodule status
-
       - name: Prepare ccache timestamp
         id: ccache_cache_timestamp
         shell: bash
@@ -89,6 +74,27 @@ jobs:
           ln -s ccache /usr/local/bin/g++ &&
           ln -s ccache /usr/local/bin/x86_64-pc-cygwin-gcc &&
           ln -s ccache /usr/local/bin/x86_64-pc-cygwin-g++
+
+      - name: List .git directory
+        env:
+          PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
+        shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
+        run: ls -la .git
+
+      - name: Update submodules
+        env:
+          PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
+        shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
+        run: git submodule update --init --recursive
+
+      - name: Debug information
+        env:
+          PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
+        shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
+        run: |
+          git status
+          git rev-parse --is-inside-work-tree
+          git submodule status
 
       - name: Build SITL
         env:
