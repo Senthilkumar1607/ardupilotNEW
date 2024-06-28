@@ -75,29 +75,13 @@ jobs:
           ln -s ccache /usr/local/bin/x86_64-pc-cygwin-gcc &&
           ln -s ccache /usr/local/bin/x86_64-pc-cygwin-g++
 
-      - name: List .git directory
-        env:
-          PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
-        shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
-        run: ls -la .git
-
-      - name: Configure Git safe directory
-        env:
-          PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
-        shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
-        run: git config --global --add safe.directory /cygdrive/d/a/ardupilotNEW/ardupilotNEW
-
-      - name: Update submodules
-        env:
-          PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
-        shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
-        run: git submodule update --init --recursive
-
-      - name: Debug information
+      - name: Configure Git safe directory and update submodules
         env:
           PATH: /usr/bin:$(cygpath ${SYSTEMROOT})/system32
         shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
         run: |
+          git config --global --add safe.directory /cygdrive/d/a/ardupilotNEW/ardupilotNEW
+          git submodule update --init --recursive
           git status
           git rev-parse --is-inside-work-tree
           git submodule status
@@ -114,6 +98,7 @@ jobs:
           ccache -s
 
       - name: List build directory contents
+        shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
         run: ls -R build/sitl
 
       - name: Check build files
@@ -124,6 +109,7 @@ jobs:
           fail: true
 
       - name: Copy build artifact
+        shell: C:\cygwin\bin\bash.exe -eo pipefail '{0}'
         run: cp -v build/sitl/bin/arduplane artifacts/ArduPlane.elf.exe
 
       - name: Archive build
